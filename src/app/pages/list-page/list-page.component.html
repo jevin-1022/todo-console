@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h3 class="text-center mb-4">Tasks</h3>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (tasks.length) {
+        <tr *ngFor="let task of tasks">
+          <td>{{ task?.title }}</td>
+          <td>{{ task?.description }}</td>
+          <td>{{ task?.dueDate | date : 'dd/MM/yyyy' }}</td>
+          <td>{{ task?.status }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm mr-2" (click)="editTask(task._id)">
+              Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteTask(task._id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td class="text-center" colspan="5">No tasks found</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
